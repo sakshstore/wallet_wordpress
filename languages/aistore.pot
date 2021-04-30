@@ -1,0 +1,81 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Loco Demo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-02 12:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: hi_IN\n"
+"X-Generator: Loco https://localise.biz/"
+
+msgid "Hello World"
+msgstr ""
+
+# Example comment
+#. Example pluralized message
+#, php-format
+msgid "An example"
+msgid_plural "%s examples"
+msgstr[0] ""
+msgstr[1] ""
+
+
+
+msgid "Debit/ Credit"
+msgstr ""
+
+msgid "Account"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Account Balance"
+msgstr ""
+
+msgid "Account Type:"
+msgstr ""
+
+msgid "Currency:"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "User Transactions"
+msgstr ""
+
+msgid "Transaction Id"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Balance"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "No Transactions Found "
+msgstr ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "Customers"
+msgstr ""
+
+msgid "No Wallet Balance  avaliable."
+msgstr ""
+
