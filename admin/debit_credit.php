@@ -1,5 +1,6 @@
 <?php
-function aistore_add_plugin_page() {
+function Saksh_Wallet_add_plugin_page() {
+    
     add_menu_page(
         __( 'Account', 'aistore' ),
         'Account',
@@ -11,12 +12,12 @@ function aistore_add_plugin_page() {
     );
 }
 
-add_action( 'admin_menu', 'aistore_add_plugin_page' );
+add_action( 'admin_menu', 'Saksh_Wallet_add_plugin_page' );
   
 
 
 function aistore_page_setting() {
-     $wallet = new AistoreWallet();
+     $wallet = new Saksh_Wallet();
       $pages = get_pages(); 
     
        ?>
