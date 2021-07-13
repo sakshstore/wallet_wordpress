@@ -1,11 +1,12 @@
 <?php
+
 /*
-Plugin Name: Saksh  Multi Currency Wallet
+Plugin Name: Saksh Wallet custom
 Version:  1.0
 Plugin URI: #
 Author: susheelhbti
 Author URI: http://www.aistore2030.com/
-Description: Saksh Wallet is a multi currency wallet you can use to store customer balance in any currency and it send /receive payment
+Description: Saksh Wallet custom
 
 */
 
@@ -71,5 +72,5 @@ include_once dirname(__FILE__) . '/admin/balance_list.php';
 include_once dirname(__FILE__) . '/admin/transaction_list.php';
 include_once dirname(__FILE__) . '/admin/debit_credit.php';
 include_once dirname(__FILE__) . '/admin/user_balance.php';
-include_once dirname(__FILE__) . '/Saksh_Wallet.class.php';
+include_once dirname(__FILE__) . '/AistoreWallet.class.php';
 

@@ -3,7 +3,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class Saksh_Wallet_Balance_List extends WP_List_Table {
+class Balance_List extends WP_List_Table {
 
 	/** Class constructor */
 	public function __construct() {
@@ -218,7 +218,7 @@ public function search_box( $text, $input_id ) {
 		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_balance WHERE 1=1 ";
 
 
-$sql .=  Saksh_Wallet_Balance_List::prepareWhereClouse();
+$sql .=  Balance_List::prepareWhereClouse();
 
 
 
@@ -288,7 +288,7 @@ else
 
 		$sql = "SELECT COUNT(*) FROM {$wpdb->prefix}aistore_wallet_balance where 1 =1   ";
 
-$sql .=  Saksh_Wallet_Balance_List::prepareWhereClouse();
+$sql .=  Balance_List::prepareWhereClouse();
 
 		return $wpdb->get_var( $sql );
 	}
@@ -448,7 +448,7 @@ function form(){
 }
 
 
-class Saksh_Wallet_SW_Plugin {
+class SW_Plugin {
 
 	// class instance
 	static $instance;
@@ -539,7 +539,7 @@ class Saksh_Wallet_SW_Plugin {
 
 		add_screen_option( $option, $args );
 
-		$this->customers_obj = new Saksh_Wallet_Balance_List();
+		$this->customers_obj = new Balance_List();
 	}
 
 
@@ -556,5 +556,5 @@ class Saksh_Wallet_SW_Plugin {
 
 
 add_action( 'plugins_loaded', function () {
-	Saksh_Wallet_SW_Plugin::get_instance();
+	SW_Plugin::get_instance();
 } );

@@ -3,7 +3,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class Saksh_Transaction_List extends WP_List_Table {
+class Transaction_List extends WP_List_Table {
 
 	/** Class constructor */
 	public function __construct() {
@@ -218,7 +218,7 @@ public function search_box( $text, $input_id ) {
 		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions WHERE 1=1 ";
 
 
-$sql .=  Saksh_Transaction_List::prepareWhereClouse();
+$sql .=  Transaction_List::prepareWhereClouse();
 
 
 
@@ -275,7 +275,22 @@ else
 	
 	}
 
-	 
+	/**
+	 * Delete a customer record.
+	 *
+	 * @param int $id customer ID
+	 */
+	// public static function delete_customer( $id ) {
+	// 	global $wpdb;
+
+	// 	$wpdb->delete(
+	// 		"{$wpdb->prefix}aistore_wallet_transactions",
+	// 		[ 'transaction_id' => $id ],
+	// 		[ '%d' ]
+	// 	);
+	// }
+
+
 	/**
 	 * Returns the count of records in the database.
 	 *
@@ -286,7 +301,7 @@ else
 
 		$sql = "SELECT COUNT(*) FROM {$wpdb->prefix}aistore_wallet_transactions where 1 =1   ";
 
-$sql .=  Saksh_Transaction_List::prepareWhereClouse();
+$sql .=  Transaction_List::prepareWhereClouse();
 
 		return $wpdb->get_var( $sql );
 	}
@@ -338,7 +353,25 @@ $sql .=  Saksh_Transaction_List::prepareWhereClouse();
 	}
 
 
-	 
+	/**
+	 * Method for name column
+	 *
+	 * @param array $item an array of DB data
+	 *
+	 * @return string
+	 */
+	// function column_name( $item ) {
+
+	// 	$delete_nonce = wp_create_nonce( 'sp_delete_customer' );
+
+	// 	$title = '<strong>' . $item['transaction_id'] . '</strong>';
+
+	// 	$actions = [
+	// 		'delete' => sprintf( '<a href="?page=%s&action=%s&customer=%s&_wpnonce=%s">Delete</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['transaction_id'] ), $delete_nonce )
+	// 	];
+
+	// 	return $title . $this->row_actions( $actions );
+	// }
 
 
 	/**
@@ -386,7 +419,18 @@ $sql .=  Saksh_Transaction_List::prepareWhereClouse();
 		return $sortable_columns;
 	}
 
-	 
+	/**
+	 * Returns an associative array containing the bulk action
+	 *
+	 * @return array
+	 */
+	// public function get_bulk_actions() {
+	// 	$actions = [
+	// 		'bulk-delete' => 'Delete'
+	// 	];
+
+	// 	return $actions;
+	// }
 
 function form(){
  
@@ -471,7 +515,7 @@ function form(){
 }
 
 
-class Saksh_TL {
+class ST_Plugin {
 
 	// class instance
 	static $instance;
@@ -562,7 +606,7 @@ class Saksh_TL {
 
 		add_screen_option( $option, $args );
 
-		$this->customers_obj = new Saksh_Transaction_List();
+		$this->customers_obj = new Transaction_List();
 	}
 
 
@@ -579,5 +623,5 @@ class Saksh_TL {
 
 
 add_action( 'plugins_loaded', function () {
-	Saksh_TL::get_instance();
+	ST_Plugin::get_instance();
 } );
