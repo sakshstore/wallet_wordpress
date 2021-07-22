@@ -5,9 +5,7 @@ function aistore_add_plugin_page() {
         'Account',
         'administrator',
         'account',
-        'aistore_page_setting',
-        plugins_url( 'myplugin/images/icon.png' ),
-        6
+        'aistore_page_setting'
     );
 }
 
@@ -53,13 +51,13 @@ if ( ! isset( $_POST['aistore_nonce'] )
      $current_user_id=get_current_user_id();
      
 if($type=='debit'){
- $res=$wallet->credit($current_user_id, $amount, $currency, $description);
- $res=$wallet->debit($user_id, $amount, $currency, $description);
+ $res=$wallet->aistore_credit($current_user_id, $amount, $currency, $description);
+ $res=$wallet->aistore_debit($user_id, $amount, $currency, $description);
 }
 
 else{
-  $res=$wallet->credit($user_id, $amount, $currency, $description);
-   $res=$wallet->debit($current_user_id, $amount, $currency, $description);
+  $res=$wallet->aistore_credit($user_id, $amount, $currency, $description);
+   $res=$wallet->aistore_debit($current_user_id, $amount, $currency, $description);
 }
 
 
@@ -80,7 +78,7 @@ else{
      $user_id=get_current_user_id();
       $currency="USD";
 
-    $balance = $wallet->balance($user_id, $currency);
+    $balance = $wallet->aistore_balance($user_id, $currency);
  
 
 $id=sanitize_text_field($_REQUEST['id']);

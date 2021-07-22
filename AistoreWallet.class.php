@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AistoreWallet{
     
     
-    public function balance($user_id, $currency)
+    public function aistore_balance($user_id, $currency)
 {
     global $wpdb;
     $w = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}aistore_wallet_balance WHERE  user_id=%s and currency =%s", $user_id, $currency));
@@ -34,7 +34,7 @@ $transaction_id=0;
 
 }
 
-public function debit($user_id, $amount, $currency, $description)
+public function aistore_debit($user_id, $amount, $currency, $description)
 {
     global $wpdb;
     $type = "debit";
@@ -59,7 +59,7 @@ $wallet = new AistoreWallet();
     SET balance = '%s',transaction_id=%d  WHERE user_id = '%d' and currency=%s", $new_amount, $transaction_id, $user_id, $currency));
 }
 
-public function credit($user_id, $amount, $currency, $description)
+public function aistore_credit($user_id, $amount, $currency, $description)
 {
     global $wpdb;
     $type = "credit";
@@ -87,7 +87,7 @@ $wallet = new AistoreWallet();
 
 
 
-public function transaction_history($user_id, $currency)
+public function aistore_transaction_history($user_id, $currency)
 {
 
     global $wpdb;
