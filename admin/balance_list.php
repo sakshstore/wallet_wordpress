@@ -3,14 +3,14 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class Balance_List extends WP_List_Table {
+class Aistore_Balance_List extends WP_List_Table {
 
 	/** Class constructor */
 	public function __construct() {
 
 		parent::__construct( [
-			'singular' => __( 'Customer', 'sp' ), //singular name of the listed records
-			'plural'   => __( 'Customers', 'sp' ), //plural name of the listed records
+			'singular' => __( 'Balance', 'sp' ), //singular name of the listed records
+			'plural'   => __( 'Balance', 'sp' ), //plural name of the listed records
 			'ajax'     => false //does this table support ajax?
 		] );
 
@@ -211,14 +211,14 @@ public function search_box( $text, $input_id ) {
 	 *
 	 * @return mixed
 	 */
-	public static function get_customers( $per_page = 5, $page_number = 1 ) {
+	public static function get_balance( $per_page = 5, $page_number = 1 ) {
 
 		global $wpdb;
 
 		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_balance WHERE 1=1 ";
 
 
-$sql .=  Balance_List::prepareWhereClouse();
+$sql .=  Aistore_Balance_List::prepareWhereClouse();
 
 
 
@@ -288,7 +288,7 @@ else
 
 		$sql = "SELECT COUNT(*) FROM {$wpdb->prefix}aistore_wallet_balance where 1 =1   ";
 
-$sql .=  Balance_List::prepareWhereClouse();
+$sql .=  Aistore_Balance_List::prepareWhereClouse();
 
 		return $wpdb->get_var( $sql );
 	}
@@ -401,14 +401,14 @@ function form(){
 	/**
 	 * Handles data query and filter, sorting, and pagination.
 	 */
-	public function prepare_items() {
+	public function aistore_prepare_items() {
 
 		$this->_column_headers = $this->get_column_info();
 
 		/** Process bulk action */
 		$this->process_bulk_action();
 
-		$per_page     = $this->get_items_per_page( 'customers_per_page', 20 );
+		$per_page     = $this->get_items_per_page( 'balance_per_page', 20 );
 		$current_page = $this->get_pagenum();
 		$total_items  = self::record_count();
 
@@ -417,7 +417,7 @@ function form(){
 			'per_page'    => $per_page //WE have to determine how many items to show on a page
 		] );
 
-		$this->items = self::get_customers( $per_page, $current_page );
+		$this->items = self::get_balance( $per_page, $current_page );
 	}
 
 	public function process_bulk_action() {
@@ -428,11 +428,11 @@ function form(){
 			// In our file that handles the request, verify the nonce.
 			$nonce = esc_attr( $_REQUEST['_wpnonce'] );
 
-			if ( ! wp_verify_nonce( $nonce, 'sp_delete_customer' ) ) {
+			if ( ! wp_verify_nonce( $nonce, 'sp_delete_balance' ) ) {
 				die( 'Go get a life script kiddies' );
 			}
 			else {
-				self::delete_customer( absint( $_GET['customer'] ) );
+				self::delete_balance( absint( $_GET['balance'] ) );
 
 		                // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
 		                // add_query_arg() return the current url
@@ -448,13 +448,13 @@ function form(){
 }
 
 
-class SW_Plugin {
+class Aistore_SW_BalanceListPlugin {
 
 	// class instance
 	static $instance;
 
 	// customer WP_List_Table object
-	public $customers_obj;
+	public $balance_obj;
 
 	// class constructor
 	public function __construct() {
@@ -496,20 +496,20 @@ class SW_Plugin {
 						<div class="meta-box-sortables ui-sortable">
 							<form method="post">
 								<?php
-								$this->customers_obj->prepare_items();
+								$this->balance_obj->aistore_prepare_items();
 		
 
  
 	
-	   $this->customers_obj->status();
+	   $this->balance_obj->status();
 	   
 	   
-	   $this->customers_obj->date_filter('Search', 'search');
+	   $this->balance_obj->date_filter('Search', 'search');
 	   
 	   
 	
-	   $this->customers_obj->search_box('Search', 'search');
-	$this->customers_obj->display(); 
+	   $this->balance_obj->search_box('Search', 'search');
+	$this->balance_obj->display(); 
 								
 								 ?>
 									
@@ -539,7 +539,7 @@ class SW_Plugin {
 
 		add_screen_option( $option, $args );
 
-		$this->customers_obj = new Balance_List();
+		$this->balance_obj = new Aistore_Balance_List();
 	}
 
 
@@ -556,5 +556,5 @@ class SW_Plugin {
 
 
 add_action( 'plugins_loaded', function () {
-	SW_Plugin::get_instance();
+	Aistore_SW_BalanceListPlugin::get_instance();
 } );

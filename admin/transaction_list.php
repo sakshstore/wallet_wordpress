@@ -3,14 +3,14 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class Transaction_List extends WP_List_Table {
+class Aistore_Transaction_List extends WP_List_Table {
 
 	/** Class constructor */
 	public function __construct() {
 
 		parent::__construct( [
-			'singular' => __( 'Customer', 'sp' ), //singular name of the listed records
-			'plural'   => __( 'Customers', 'sp' ), //plural name of the listed records
+			'singular' => __( 'Transaction', 'sp' ), //singular name of the listed records
+			'plural'   => __( 'Transaction', 'sp' ), //plural name of the listed records
 			'ajax'     => false //does this table support ajax?
 		] );
 
@@ -211,14 +211,14 @@ public function search_box( $text, $input_id ) {
 	 *
 	 * @return mixed
 	 */
-	public static function get_customers( $per_page = 5, $page_number = 1 ) {
+	public static function get_transactions( $per_page = 5, $page_number = 1 ) {
 
 		global $wpdb;
 
 		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions WHERE 1=1 ";
 
 
-$sql .=  Transaction_List::prepareWhereClouse();
+$sql .=  Aistore_Transaction_List::prepareWhereClouse();
 
 
 
@@ -275,21 +275,7 @@ else
 	
 	}
 
-	/**
-	 * Delete a customer record.
-	 *
-	 * @param int $id customer ID
-	 */
-	// public static function delete_customer( $id ) {
-	// 	global $wpdb;
-
-	// 	$wpdb->delete(
-	// 		"{$wpdb->prefix}aistore_wallet_transactions",
-	// 		[ 'transaction_id' => $id ],
-	// 		[ '%d' ]
-	// 	);
-	// }
-
+	
 
 	/**
 	 * Returns the count of records in the database.
@@ -301,7 +287,7 @@ else
 
 		$sql = "SELECT COUNT(*) FROM {$wpdb->prefix}aistore_wallet_transactions where 1 =1   ";
 
-$sql .=  Transaction_List::prepareWhereClouse();
+$sql .=  Aistore_Transaction_List::prepareWhereClouse();
 
 		return $wpdb->get_var( $sql );
 	}
@@ -360,19 +346,7 @@ $sql .=  Transaction_List::prepareWhereClouse();
 	 *
 	 * @return string
 	 */
-	// function column_name( $item ) {
-
-	// 	$delete_nonce = wp_create_nonce( 'sp_delete_customer' );
-
-	// 	$title = '<strong>' . $item['transaction_id'] . '</strong>';
-
-	// 	$actions = [
-	// 		'delete' => sprintf( '<a href="?page=%s&action=%s&customer=%s&_wpnonce=%s">Delete</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['transaction_id'] ), $delete_nonce )
-	// 	];
-
-	// 	return $title . $this->row_actions( $actions );
-	// }
-
+	
 
 	/**
 	 *  Associative array of columns
@@ -467,7 +441,7 @@ function form(){
 			'per_page'    => $per_page //WE have to determine how many items to show on a page
 		] );
 
-		$this->items = self::get_customers( $per_page, $current_page );
+		$this->items = self::get_transactions( $per_page, $current_page );
 	}
 
 	public function process_bulk_action() {
@@ -482,7 +456,7 @@ function form(){
 				die( 'Go get a life script kiddies' );
 			}
 			else {
-				self::delete_customer( absint( $_GET['customer'] ) );
+				self::delete_transaction( absint( $_GET['transaction'] ) );
 
 		                // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
 		                // add_query_arg() return the current url
@@ -501,7 +475,7 @@ function form(){
 
 			// loop over the array of record IDs and delete them
 			foreach ( $delete_ids as $id ) {
-				self::delete_customer( $id );
+				self::delete_transaction( $id );
 
 			}
 
@@ -515,13 +489,13 @@ function form(){
 }
 
 
-class ST_Plugin {
+class Aistore_ST_TransactionListPlugin {
 
 	// class instance
 	static $instance;
 
 	// customer WP_List_Table object
-	public $customers_obj;
+	public $transaction_obj;
 
 	// class constructor
 	public function __construct() {
@@ -563,20 +537,20 @@ class ST_Plugin {
 						<div class="meta-box-sortables ui-sortable">
 							<form method="post">
 								<?php
-								$this->customers_obj->prepare_items();
+								$this->transaction_obj->prepare_items();
 		
 
  
 	
-	   $this->customers_obj->status();
+	   $this->transaction_obj->status();
 	   
 	   
-	   $this->customers_obj->date_filter('Search', 'search');
+	   $this->transaction_obj->date_filter('Search', 'search');
 	   
 	   
 	
-	   $this->customers_obj->search_box('Search', 'search');
-	$this->customers_obj->display(); 
+	   $this->transaction_obj->search_box('Search', 'search');
+	$this->transaction_obj->display(); 
 								
 								 ?>
 									
@@ -606,7 +580,7 @@ class ST_Plugin {
 
 		add_screen_option( $option, $args );
 
-		$this->customers_obj = new Transaction_List();
+		$this->transaction_obj = new Aistore_Transaction_List();
 	}
 
 
@@ -623,5 +597,5 @@ class ST_Plugin {
 
 
 add_action( 'plugins_loaded', function () {
-	ST_Plugin::get_instance();
+	Aistore_ST_TransactionListPlugin::get_instance();
 } );
