@@ -90,8 +90,8 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
 <br><br>
   <label><?php _e( 'Account Type:', 'aistore' ) ;?></label>
 <select name="type" id="type">
-  <option value="debit">Debit</option>
-  <option value="credit">Credit</option>
+  <option value="debit"><?php _e( 'Account Type:', 'aistore' ) ;?>Debit</option>
+  <option value="credit"><?php _e( 'Account Type:', 'aistore' ) ;?>Credit</option>
 
 </select><br><br>
 
@@ -103,14 +103,14 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
 
 
 <select name="currency" id="currency">
-  <option value="INR">INR</option>
-  <option value="EUR">EUR</option>
-  <option value="USD">USD</option>
-  <option value="GDP">GDP</option>
+  <option value="INR"><?php _e( 'INR', 'aistore' ) ;?></option>
+  <option value="EUR"><?php _e( 'EUR', 'aistore' ) ;?></option>
+  <option value="USD"><?php _e( 'USD', 'aistore' ) ;?></option>
+  <option value="GDP"><?php _e( 'GDP', 'aistore' ) ;?></option>
 </select><br><br>
 
 
-<input class="input" type="hidden" name="user_id" value="<?php echo $id; ?>"/>
+<input class="input" type="hidden" name="user_id" value="<?php echo esc_attr($id); ?>"/>
   <label><?php _e( 'Amount:', 'aistore' ) ;?></label>
 
 <input class="input" type="text" name="amount" /><br><br>
@@ -181,14 +181,14 @@ $results =
     ?> 
       <tr>
 
-		   <td>   <?php echo $row->transaction_id ; ?></td>
+		   <td>   <?php echo esc_attr($row->transaction_id) ; ?></td>
 		   
-		  <td> 	 <?php echo $row->amount. $row->currency; ?> </td>
-		  	  <td> 	 <?php echo $row->type; ?> </td>
-		   	  <td> 	 <?php echo $row->balance; ?> </td>
-	  <td> 	 <?php echo $row->description ; ?> </td>
+		  <td> 	 <?php echo esc_attr($row->amount. $row->currency); ?> </td>
+		  	  <td> 	 <?php echo esc_attr($row->type); ?> </td>
+		   	  <td> 	 <?php echo esc_attr($row->balance); ?> </td>
+	  <td> 	 <?php echo esc_attr($row->description) ; ?> </td>
 		 
-		   <td>  <?php echo $row->date ; ?> </td>
+		   <td>  <?php echo esc_attr($row->date) ; ?> </td>
        
                 
             </tr>

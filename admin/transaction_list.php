@@ -529,7 +529,7 @@ class Aistore_ST_TransactionListPlugin {
 	public function plugin_settings_page() {
 		?>
 		<div class="wrap">
-			<h2>All Transaction List</h2>
+			<h2><?php _e( 'All Transaction List', 'aistore' ) ;?></h2>
 
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-2">
