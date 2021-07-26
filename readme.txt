@@ -4,7 +4,7 @@ Donate link: http://www.aistore2030.com/
 Tags: Saksh Wallet custom 
 License: GPLv2
 Requires at least:  5.3
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 4.8.0
 Requires PHP: 7.0
 Version : 1.0

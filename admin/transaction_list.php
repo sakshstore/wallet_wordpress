@@ -49,44 +49,47 @@ public function status_filter( $text, $input_id ) {
 <p class="search-box">
   <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
  
- 
+
+
+
+
 <select name="search_column"  >
 
  
-  <option value="transaction_id">Transaction Id</option>
-  <option value="user_id">User Id</option>
+  <option value="transaction_id"><?php  _e( 'Transaction Id', 'aistore' ) ?></option>
+  <option value="user_id"><?php  _e( 'User Id', 'aistore' ) ?></option>
   
-    <option value="balance">Balance</option>
-   <option value="currency">Currency</option> 
-     <option value="type">Type</option> 
+    <option value="balance"><?php  _e( 'Balance', 'aistore' ) ?></option>
+   <option value="currency"><?php  _e( 'Currency', 'aistore' ) ?></option> 
+    <option value="type"><?php  _e( 'Type', 'aistore' ) ?></option> 
   
   
   
   
 </select>
-
 
 <select name="search_operator"  >
 
-    <option value="=">Equal </option>
+    <option value="="><?php  _e( 'Equal', 'aistore' ) ?> </option>
 	
-    <option value="!=">Not equal </option>
+    <option value="!="><?php  _e( 'Not equal ', 'aistore' ) ?></option>
 	
-    <option value="LIKE">Contains </option>
-    <option value="NOT LIKE">Not Contains </option> 
+    <option value="LIKE"><?php  _e( 'Contains ', 'aistore' ) ?></option>
+    <option value="NOT LIKE"><?php  _e( 'Not Contains', 'aistore' ) ?> </option> 
 	
-  <option value=">">Greater than</option>
+  <option value=">"><?php  _e( 'Greater than', 'aistore' ) ?></option>
  
-  <option value=">=">Greater than or equal </option>
-  <option value="<">Less than </option>
+  <option value=">="><?php  _e( 'Greater than or equal', 'aistore' ) ?> </option>
+  <option value="<"><?php  _e( 'Less than', 'aistore' ) ?> </option>
   
-   <option value="<=">Less than or equal</option> 
+   <option value="<="><?php  _e( 'Less than or equal', 'aistore' ) ?></option> 
   
   
   
   
   
 </select>
+
 
 
      <input type="search" id="<?php echo esc_attr( $input_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" />
@@ -120,9 +123,9 @@ public function date_filter( $text, $input_id ) {
 	 <input type="hidden" name="date_filter" value="1" /> 
 		
 	  
-     Start Date <input type='date' class='dateFilter' name='fromDate' value='<?php if(isset($_POST['fromDate'])) echo $_POST['fromDate']; ?>'>
+    <?php  _e( 'Start Date', 'aistore' ) ?><input type='date' class='dateFilter' name='fromDate' value='<?php if(isset($_POST['fromDate'])) echo $_POST['fromDate']; ?>'>
  
-     End Date <input type='date' class='dateFilter' name='endDate' value='<?php if(isset($_POST['endDate'])) echo $_POST['endDate']; ?>'>
+ <?php  _e( ' End Date', 'aistore' ) ?> <input type='date' class='dateFilter' name='endDate' value='<?php if(isset($_POST['endDate'])) echo $_POST['endDate']; ?>'>
 
   
      
@@ -158,15 +161,16 @@ public function search_box( $text, $input_id ) {
   <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
  
  
+
 <select name="search_column"  >
 
  
-  <option value="transaction_id">Transaction Id</option>
-  <option value="user_id">User Id</option>
+  <option value="transaction_id"><?php  _e( 'Transaction Id', 'aistore' ) ?></option>
+  <option value="user_id"><?php  _e( 'User Id', 'aistore' ) ?></option>
   
-    <option value="balance">Balance</option>
-   <option value="currency">Currency</option> 
-     <option value="type">Type</option> 
+    <option value="balance"><?php  _e( 'Balance', 'aistore' ) ?></option>
+   <option value="currency"><?php  _e( 'Currency', 'aistore' ) ?></option> 
+    <option value="type"><?php  _e( 'Type', 'aistore' ) ?></option> 
   
   
   
@@ -176,19 +180,19 @@ public function search_box( $text, $input_id ) {
 
 <select name="search_operator"  >
 
-    <option value="=">Equal </option>
+    <option value="="><?php  _e( 'Equal', 'aistore' ) ?> </option>
 	
-    <option value="!=">Not equal </option>
+    <option value="!="><?php  _e( 'Not equal ', 'aistore' ) ?></option>
 	
-    <option value="LIKE">Contains </option>
-    <option value="NOT LIKE">Not Contains </option> 
+    <option value="LIKE"><?php  _e( 'Contains ', 'aistore' ) ?></option>
+    <option value="NOT LIKE"><?php  _e( 'Not Contains', 'aistore' ) ?> </option> 
 	
-  <option value=">">Greater than</option>
+  <option value=">"><?php  _e( 'Greater than', 'aistore' ) ?></option>
  
-  <option value=">=">Greater than or equal </option>
-  <option value="<">Less than </option>
+  <option value=">="><?php  _e( 'Greater than or equal', 'aistore' ) ?> </option>
+  <option value="<"><?php  _e( 'Less than', 'aistore' ) ?> </option>
   
-   <option value="<=">Less than or equal</option> 
+   <option value="<="><?php  _e( 'Less than or equal', 'aistore' ) ?></option> 
   
   
   

@@ -30,8 +30,8 @@ function aistore_new_modify_user_table_row_balance( $val, $column_name, $user_id
         $currency="USD";
         $wallet = new AistoreWallet();
     $balance = $wallet->aistore_balance($user_id, $currency);
-        
-         $link= '<a href="/wp-admin/admin.php?page=account&id='.$user_id.'">Add Balance</a>';
+           $url = admin_url('admin.php'); 
+         $link= '<a href="'.$url.'?page=account&id='.$user_id.'">Add Balance</a>';
 
    
        

@@ -90,8 +90,8 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
 <br><br>
   <label><?php _e( 'Account Type:', 'aistore' ) ;?></label>
 <select name="type" id="type">
-  <option value="debit"><?php _e( 'Account Type:', 'aistore' ) ;?>Debit</option>
-  <option value="credit"><?php _e( 'Account Type:', 'aistore' ) ;?>Credit</option>
+  <option value="debit"><?php _e( 'Account Type:', 'aistore' ) ;?><?php _e( 'Debit', 'aistore' ) ;?></option>
+  <option value="credit"><?php _e( 'Account Type:', 'aistore' ) ;?><?php _e( 'Credit', 'aistore' ) ;?></option>
 
 </select><br><br>
 
