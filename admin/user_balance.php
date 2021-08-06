@@ -1,16 +1,12 @@
 <?php
 
 
-function aistore_new_contact_methods_balance( $contactmethods ) {
-    $contactmethods['wallet_balance'] = 'Balance';
-    return $contactmethods;
-}
-add_filter( 'user_contactmethods', 'aistore_new_contact_methods_balance', 10, 1 );
+
  
  function aistore_new_modify_user_table_balance( $column ) {
 
        
-    $column['wallet_balance'] = 'Balance';
+    $column['wallet_balance'] = _e( 'Balance', 'aistore' ) ;
     return $column;
 }
 
@@ -27,7 +23,7 @@ function aistore_new_modify_user_table_row_balance( $val, $column_name, $user_id
 
  
         case 'wallet_balance':
-        $currency="USD";
+        $currency="INR";
         $wallet = new AistoreWallet();
     $balance = $wallet->aistore_balance($user_id, $currency);
            $url = admin_url('admin.php'); 

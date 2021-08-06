@@ -39,7 +39,7 @@ public function aistore_debit($user_id, $amount, $currency, $description)
     global $wpdb;
     $type = "debit";
 $wallet = new AistoreWallet();
-    $old_balance = $wallet->balance($user_id, $currency);
+    $old_balance = $wallet->aistore_balance($user_id, $currency);
 
     $new_amount = $old_balance - $amount;
 
@@ -64,7 +64,7 @@ public function aistore_credit($user_id, $amount, $currency, $description)
     global $wpdb;
     $type = "credit";
 $wallet = new AistoreWallet();
-    $old_balance = $wallet->balance($user_id, $currency);
+    $old_balance = $wallet->aistore_balance($user_id, $currency);
 
     $new_amount = $old_balance + $amount;
 

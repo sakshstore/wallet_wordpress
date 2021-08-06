@@ -76,12 +76,17 @@ else{
 
 <?php 
      $user_id=get_current_user_id();
-      $currency="USD";
+      $currency="INR";
 
     $balance = $wallet->aistore_balance($user_id, $currency);
  
-
+if (isset($_REQUEST['id']))
+        {
 $id=sanitize_text_field($_REQUEST['id']);
+}
+else{
+    $id=0;
+}
 printf(__( 'Account Balance %s.', 'aistore'),$balance); 
 
 
@@ -90,8 +95,8 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
 <br><br>
   <label><?php _e( 'Account Type:', 'aistore' ) ;?></label>
 <select name="type" id="type">
-  <option value="debit"><?php _e( 'Account Type:', 'aistore' ) ;?><?php _e( 'Debit', 'aistore' ) ;?></option>
-  <option value="credit"><?php _e( 'Account Type:', 'aistore' ) ;?><?php _e( 'Credit', 'aistore' ) ;?></option>
+  <option value="debit"><?php _e( 'Debit', 'aistore' ) ;?></option>
+  <option value="credit"><?php _e( 'Credit', 'aistore' ) ;?></option>
 
 </select><br><br>
 
@@ -142,16 +147,39 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
     <?php
    global  $wpdb;
 
-$page_id=get_option('details_escrow_page_id'); 
- 
-   $id=sanitize_text_field($_REQUEST['id']);
+$page_id=get_option('details_escrow_page_id');
 
-$results = 
+if (isset($_REQUEST['id']))
+        {
+            $id = sanitize_text_field($_REQUEST['id']);
+
+            if ($id > 0)
+            {
+
+              $results = 
    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions where user_id=%s",$id) 
        ;
 
 
 		$results=$wpdb->get_results($results );	     
+            }
+
+            else
+
+            {
+                $id = 0;
+                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions order by transaction_id desc");
+
+            }
+        }
+        else
+        {
+            $id = 0;
+            $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions order by transaction_id desc");
+
+        }
+
+      
 
   ?>
   <h1> <?php  _e( 'User Transactions', 'aistore' ) ?> </h1>
