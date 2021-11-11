@@ -76,7 +76,7 @@ else{
 
 <?php 
      $user_id=get_current_user_id();
-      $currency="INR";
+      $currency="USD";
 
     $balance = $wallet->aistore_balance($user_id, $currency);
  
@@ -106,12 +106,27 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
   <label><?php _e( 'Currency:', 'aistore' ) ;?></label>
 
 
+            	
+<?php 
+
+        $plugin_data = get_plugin_data(__FILE__);
+        $plugin_name = $plugin_data['TextDomain'];
+
+        $dir = '/wp-content/plugins/wallet_wordpress-master/Common-Currency.json';
+        // print_r($plugin_data);
+        // echo $plugin_name;
+?>
 
 <select name="currency" id="currency">
-  <option value="INR"><?php _e( 'INR', 'aistore' ) ;?></option>
-  <option value="EUR"><?php _e( 'EUR', 'aistore' ) ;?></option>
-  <option value="USD"><?php _e( 'USD', 'aistore' ) ;?></option>
-  <option value="GDP"><?php _e( 'GDP', 'aistore' ) ;?></option>
+    <?php
+        $url = get_site_url(null, $dir, 'https');
+        $currency = json_decode(file_get_contents($url));
+        $a = array();
+        foreach ($currency as $c)
+        {
+            ?>
+<option value="<?php echo $c->code; ?>"><?php echo $c->name; ?></option>
+<?php } ?>
 </select><br><br>
 
 

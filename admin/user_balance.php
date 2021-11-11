@@ -23,7 +23,7 @@ function aistore_new_modify_user_table_row_balance( $val, $column_name, $user_id
 
  
         case 'wallet_balance':
-        $currency="INR";
+        $currency='CAD';
         $wallet = new AistoreWallet();
     $balance = $wallet->aistore_balance($user_id, $currency);
            $url = admin_url('admin.php'); 
