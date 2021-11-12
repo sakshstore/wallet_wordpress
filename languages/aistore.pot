@@ -28,54 +28,227 @@ msgstr[1] ""
 
 
 
-msgid "Debit/ Credit"
+msgid "Thank You"
 msgstr ""
 
-msgid "Account"
+msgid "Sorry, your nonce did not verify"
 msgstr ""
+
+msgid "Go To Details Page"
+msgstr ""
+
+msgid "Term And Condition"
+msgstr ""
+
+msgid "Documents"
+msgstr ""
+
+msgid "Insufficent Balance"
+msgstr ""
+
+msgid "Successfully send payment with Escrow id"
+msgstr ""
+
+msgid "Escrow Fee"
+msgstr ""
+
+msgid "Sender"
+msgstr ""
+
+msgid "Receiver"
+msgstr ""
+
+msgid "Go To Next Step"
+msgstr ""
+
+msgid "Title"
+msgstr "Noureen"
 
 msgid "Amount"
 msgstr ""
 
-msgid "Description"
+msgid " Available balance is "
 msgstr ""
 
-msgid "Account Balance"
+msgid "Total  Amount"
 msgstr ""
 
-msgid "Account Type:"
+msgid "Receiver Email"
 msgstr ""
 
-msgid "Currency:"
+msgid "Out Going Escrow"
+msgstr ""
+
+msgid "Escrow List Not Found"
+msgstr ""
+
+msgid "Id"
+msgstr ""
+
+msgid "Incoming Escrow"
+msgstr ""
+
+msgid "Go To Escrow List Page"
+msgstr ""
+
+msgid "Disputed-1 Successfully"
+msgstr ""
+
+msgid "Disputed-2 Successfully"
+msgstr ""
+
+msgid "Disputed-3 Successfully"
+msgstr ""
+
+msgid "Accept Escrow System"
+msgstr ""
+
+msgid "Accepted Successfully"
+msgstr ""
+
+msgid "Released Successfully"
+msgstr ""
+
+msgid "Cancelled Successfully"
+msgstr ""
+
+msgid "Term Condition"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Download Document"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Release"
+msgstr ""
+
+msgid "Dispute"
+msgstr ""
+
+msgid "Cancel Escrow"
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Submit Message"
+msgstr ""
+
+msgid "Upload"
 msgstr ""
 
 msgid "Submit"
 msgstr ""
 
-msgid "User Transactions"
+msgid "All On going escrow"
 msgstr ""
 
-msgid "Transaction Id"
+msgid "No Escrow Found"
 msgstr ""
 
-msgid "Type"
+msgid "All disputed escrows"
 msgstr ""
 
-msgid "Balance"
+msgid "Escrow Setting"
 msgstr ""
 
-msgid "Date"
+msgid "Create Escrow form"
 msgstr ""
 
-msgid "No Transactions Found "
+msgid "Escrow Page - 2"
 msgstr ""
 
-msgid "Customer"
+msgid "Escrow List page"
 msgstr ""
 
-msgid "Customers"
+msgid "Escrow Details Page"
 msgstr ""
 
-msgid "No Wallet Balance  avaliable."
+msgid "Admin Escrow Setting"
+msgstr ""
+
+msgid "Admin ID"
+msgstr ""
+
+msgid "Create an admin account and set its ID this will be used to hold payments"
+msgstr ""
+
+msgid "Escrow Fee Setting"
+msgstr ""
+
+msgid "Escrow Create Fee"
+msgstr ""
+
+msgid "Escrow Accept Fee"
+msgstr ""
+
+msgid "Escrow Accept Fee"
+msgstr ""
+
+msgid "Successfully  with Escrow id"
+msgstr ""
+
+msgid "Escrow System"
+msgstr ""
+
+msgid "Escrow List"
+msgstr ""
+
+msgid "Disputed Escrow List"
+msgstr ""
+
+msgid "Disputes"
+msgstr ""
+
+msgid "Setting"
+msgstr ""
+
+msgid "My Settings"
+msgstr ""
+
+msgid "Note : We accept only pdf file and
+	You can upload many pdf file then go to next escrow details page."
+msgstr ""
+
+msgid "Payment transaction for the accept escrow with escrow id"
+msgstr ""
+
+msgid "Payment transaction for the release escrow with escrow id"
+msgstr ""
+
+
+msgid "Payment transaction for the cancel escrow with escrow id"
+msgstr ""
+
+
+msgid "Payment transaction for the escrow id"
+msgstr ""
+
+
+
+msgid "Please make sure user is allowed to register in the website"
+msgstr ""
+
+msgid "This plugin require your suggestion plz message aistore2030@gmail.com"
+msgstr ""
+
+msgid "Please remember payment deposit will complete only when order status will be marked completed."
+msgstr ""
+
+
+msgid "In Escrow details page their is a make payment button or after the escrow create it redirect to the woo commerce for the payment deposit."
+msgstr ""
+
+
+msgid "For any support please message me at aistore2030@gmail.com"
+msgstr ""
+
+
+msgid "All Escrow List"
 msgstr ""
 
