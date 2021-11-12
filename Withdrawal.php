@@ -9,65 +9,41 @@ function aistore_extra_user_profile_fields( $user ) { ?>
 
     <table class="form-table">
     <tr>
-        <th><label for="bank_account_name"><?php _e("Bank Account Name"); ?></label></th>
+        <th><label for="user_bank_detail"><?php _e("Bank Account Details"); ?></label></th>
         <td>
-            <input type="text" name="bank_account_name" id="bank_account_name" value="<?php echo esc_attr( get_the_author_meta( 'bank_account_name', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your bank acccount name."); ?></span>
+             <textarea id="user_bank_detail" name="user_bank_detail" rows="2" cols="50">
+<?php echo esc_attr(get_the_author_meta('user_bank_detail', $user->ID)); ?>
+</textarea>
         </td>
     </tr>
     <tr>
-        <th><label for="bank_account"><?php _e("Bank Account Number"); ?></label></th>
+        <th><label for="user_deposit_instruction"><?php _e("Deposit Instructions"); ?></label></th>
         <td>
-            <input type="text" name="bank_account" id="bank_account" value="<?php echo esc_attr( get_the_author_meta( 'bank_account', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your bank account number."); ?></span>
-        </td>
-    </tr>
-    <tr>
-    <th><label for="name_of_bank"><?php _e("Name Of Bank"); ?></label></th>
-        <td>
-            <input type="text" name="name_of_bank" id="name_of_bank" value="<?php echo esc_attr( get_the_author_meta( 'name_of_bank', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your name of bank."); ?></span>
+            <textarea id="user_deposit_instruction" name="user_deposit_instruction" rows="2" cols="50" >
+<?php echo esc_attr(get_the_author_meta('user_deposit_instruction', $user->ID)); ?>
+</textarea>
         </td>
     </tr>
     
-      <tr>
-    <th><label for="bank_address"><?php _e("Bank Address"); ?></label></th>
-        <td>
-            <input type="text" name="bank_address" id="bank_address" value="<?php echo esc_attr( get_the_author_meta( 'bank_address', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your bank address."); ?></span>
-        </td>
-    </tr>
     
-      <tr>
-    <th><label for="ifsc_code"><?php _e("IFSC Code"); ?></label></th>
+         <tr>
+    <th><label for="lock_bank_details"><?php _e(" Lock Bank Details"); ?></label></th>
         <td>
-            <input type="text" name="ifsc_code" id="ifsc_code" value="<?php echo esc_attr( get_the_author_meta( 'ifsc_code', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your IFSC CodeY."); ?></span>
+             <?php
+    if( esc_attr( get_the_author_meta( 'lock_bank_details', $user->ID ) )==0){
+        
+    ?>
+              <input type="checkbox" id="lock_bank_details" name="lock_bank_details" value="1"><br />
+       <?php }
+       else{
+           ?>
+           <input type="checkbox" id="lock_bank_details" name="lock_bank_details" value="1" checked><br />
+           <?php }
+           ?>
+       
         </td>
     </tr>
-    
-      <tr>
-    <th><label for="UPI_CODE"><?php _e("UPI CODE"); ?></label></th>
-        <td>
-            <input type="text" name="UPI_CODE" id="UPI_CODE" value="<?php echo esc_attr( get_the_author_meta( 'UPI_CODE', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your UPI CODE."); ?></span>
-        </td>
-    </tr>
-     <tr>
-    <th><label for="PAYTM_NUMBER"><?php _e("PAYTM NUMBER"); ?></label></th>
-        <td>
-            <input type="text" name="PAYTM_NUMBER" id="PAYTM_NUMBER" value="<?php echo esc_attr( get_the_author_meta( 'PAYTM_NUMBER', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your PAYTM NUMBER."); ?></span>
-        </td>
-    </tr>
-    
-     <tr>
-    <th><label for="GOOGLE_PAY"><?php _e("GOOGLE PAY"); ?></label></th>
-        <td>
-            <input type="text" name="GOOGLE_PAY" id="GOOGLE_PAY" value="<?php echo esc_attr( get_the_author_meta( 'GOOGLE_PAY', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your GOOGLE PAY."); ?></span>
-        </td>
-    </tr>
+  
     </table>
 <?php }
 
@@ -84,14 +60,10 @@ function aistore_save_extra_user_profile_fields( $user_id ) {
         return false; 
     }
     
- update_user_meta( $user_id, 'bank_account_name', sanitize_text_field($_POST['bank_account_name']) );
- update_user_meta( $user_id, 'bank_account', intval($_POST['bank_account']) );
- update_user_meta( $user_id, 'name_of_bank', sanitize_text_field($_POST['name_of_bank'] ));
-  update_user_meta( $user_id, 'ifsc_code', sanitize_text_field($_POST['ifsc_code']) );
- update_user_meta( $user_id, 'bank_address', sanitize_text_field($_POST['bank_address']) );
- update_user_meta( $user_id, 'UPI_CODE', sanitize_text_field($_POST['UPI_CODE']) );
- update_user_meta( $user_id, 'PAYTM_NUMBER', sanitize_text_field($_POST['PAYTM_NUMBER'] ));
-  update_user_meta( $user_id, 'GOOGLE_PAY', sanitize_text_field($_POST['GOOGLE_PAY'] ));
+ update_user_meta( $user_id, 'user_bank_detail', sanitize_text_field($_POST['user_bank_detail']) );
+
+ update_user_meta( $user_id, 'user_deposit_instruction', sanitize_text_field($_POST['user_deposit_instruction'] ));
+  update_user_meta( $user_id, 'lock_bank_details', sanitize_text_field($_POST['lock_bank_details'] ));
 }
 
 function aistore_saksh_add_plugin_page() {
@@ -190,25 +162,21 @@ global  $wpdb;
    
    $users = $wpdb->get_row($wpdb->prepare( "SELECT * FROM {$wpdb->prefix}users WHERE user_email=%s ",$row->username));
 
-$bank_account= esc_attr( get_the_author_meta( 'bank_account', $users->ID ) );
-$bank_account_name= esc_attr( get_the_author_meta( 'bank_account_name', $users->ID ) );
-$name_of_bank= esc_attr( get_the_author_meta( 'name_of_bank', $users->ID ) );
-$bank_address= esc_attr( get_the_author_meta( 'bank_address', $users->ID ) );
+$bank_account= esc_attr( get_the_author_meta( 'user_bank_details', $users->ID ) );
+$user_deposit_instructions= esc_attr( get_the_author_meta( 'user_deposit_instructions', $users->ID ) );
 
-
-$ifsc_code= esc_attr( get_the_author_meta( 'ifsc_code', $users->ID ) );
-$UPI_CODE= esc_attr( get_the_author_meta( 'UPI_CODE', $users->ID ) );
-$PAYTM_NUMBER= esc_attr( get_the_author_meta( 'PAYTM_NUMBER', $users->ID ) );
-$GOOGLE_PAY= esc_attr( get_the_author_meta( 'GOOGLE_PAY', $users->ID ) );
 
 ?>
 <!-- Button trigger modal -->
 
 
 
-<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever1=" <?php echo esc_attr($row->id) ; ?>" data-name=" <?php echo esc_attr($row->username) ; ?>" data-wbank=" <?php echo esc_attr($bank_account); ?>" data-bank_account_name=" <?php echo esc_attr($bank_account_name); ?>" data-name_of_bank="<?php echo esc_attr($name_of_bank); ?>" data-bank_address=" <?php echo esc_attr($bank_address); ?>" data-amount=" <?php echo esc_attr($row->amount) ; ?>"
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever1=" <?php echo esc_attr($row->id) ; ?>" 
+data-name=" <?php echo esc_attr($row->username) ; ?>"
+data-wbank=" <?php echo esc_attr($bank_account); ?>" 
+data-bank_account_name=" <?php echo esc_attr($user_deposit_instructions); ?>"  
+data-amount=" <?php echo esc_attr($row->amount) ; ?>"
 data-status=" <?php echo esc_attr($row->status) ; ?>" 
-data-ifsc_code=" <?php echo esc_attr($ifsc_code); ?>" data-upi_code="<?php echo esc_attr($UPI_CODE); ?>" data-paytm_number=" <?php echo esc_attr($PAYTM_NUMBER); ?>" data-google_pay=" <?php echo esc_attr($GOOGLE_PAY); ?>"
 data-status=" <?php echo esc_attr($row->status) ; ?>">
  
  <?php   _e( 'View', 'aistore' ); ?>
@@ -453,53 +421,18 @@ else{
  
   <tbody>
     <tr>
-      <th scope="row"><?php _e( 'Bank Account Name', 'aistore' ); ?></th>
-      <td><?php echo  esc_attr("<span id='bank_account_name'> </span>"); ?></td>
+      <th scope="row"><?php _e( 'Bank Account Details', 'aistore' ); ?></th>
+      <td><?php echo  esc_attr("<span id='wbank'> </span>"); ?></td>
        
       
     </tr>
     <tr>
-      <th scope="row"><?php _e( 'Bank Account Number', 'aistore' ); ?></th>
-      <td><?php echo esc_attr( "<span id='wbank'> </span>"); ?></td>
+      <th scope="row"><?php _e( 'Deposit Instructions', 'aistore' ); ?></th>
+      <td><?php echo esc_attr( "<span id='bank_account_name'> </span>"); ?></td>
     
    
     </tr>
-    
-    <tr>
-      <th scope="row"><?php _e( 'Name Of Bank', 'aistore' ); ?></th>
-      <td><?php echo  esc_attr("<span id='name_of_bank'> </span>"); ?></td>
-      
-    </tr>
-    
-    
-     <tr>
-      <th scope="row"><?php _e( 'Bank Address', 'aistore' ); ?></th>
-      <td><?php echo esc_attr( "<span id='bank_address'> </span>"); ?></td>
-      
-    </tr>
-    
-    <tr>
-      <th scope="row"><?php _e( 'IFSC Code', 'aistore' ); ?></th>
-      <td><?php echo esc_attr( "<span id='ifsc_code'> </span>"); ?></td>
-      
-    </tr>
-      
-     <tr>
-      <th scope="row"><?php _e( 'UPI Code', 'aistore' ); ?></th>
-      <td><?php echo  esc_attr("<span id='upi_code'> </span>"); ?></td>
-      
-    </tr>
-    
-     <tr>
-      <th scope="row"><?php _e( 'PAYTM Number', 'aistore' ); ?></th>
-      <td><?php echo esc_attr( "<span id='paytm_number'> </span>"); ?></td>
-      
-    </tr>
-      <tr>
-      <th scope="row"><?php _e( 'GOOGLE_PAY', 'aistore' ); ?></th>
-      <td><?php echo esc_attr("<span id='google_pay'> </span>"); ?></td>
-      
-    </tr>
+   
   </tbody>
 </table>
       </div>
@@ -531,15 +464,11 @@ else{
     var username = button.data('name')
     var wbank=button.data('wbank')
     var bank_account_name=button.data('bank_account_name')
-  var name_of_bank=button.data('name_of_bank')
-  var bank_address=button.data('bank_address')
+ 
   var amount=button.data('amount')
   var status=button.data('status')
   
-    var ifsc_code=button.data('ifsc_code')
-  var upi_code=button.data('upi_code')
-  var paytm_number=button.data('paytm_number')
-  var google_pay=button.data('google_pay')
+   
   
   
 <?php
@@ -547,18 +476,13 @@ else{
  ?>
    document.getElementById('wbank').innerText=wbank;
    document.getElementById('bank_account_name').innerText=bank_account_name;
-document.getElementById('name_of_bank').innerText=name_of_bank;
-   document.getElementById('bank_address').innerText=bank_address;
+
  document.getElementById('username').innerText=username;
  document.getElementById('wid').innerText=recipient;
   document.getElementById('amount').innerText=amount;
  document.getElementById('status').innerText=status;
  
-  document.getElementById('ifsc_code').innerText=ifsc_code;
- document.getElementById('upi_code').innerText=upi_code;
-  document.getElementById('paytm_number').innerText=paytm_number;
- document.getElementById('google_pay').innerText=google_pay;
- 
+
  
  
 })

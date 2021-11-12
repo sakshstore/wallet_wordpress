@@ -198,6 +198,18 @@ $currency=  $row->currency;
         return $wpdb->get_results($sql);
 
     }
+    
+     public function aistore_wallet_currency()
+    {
+
+        global $wpdb;
+
+     $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}escrow_currency  order by id desc");
+
+        return ($results);
+
+    }
+
 
 }
 
