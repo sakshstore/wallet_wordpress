@@ -215,7 +215,9 @@ public function search_box( $text, $input_id ) {
 
 		global $wpdb;
 
-		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_balance WHERE 1=1 ";
+		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_balance  INNER JOIN {$wpdb->prefix}users ON  {$wpdb->prefix}aistore_wallet_balance.user_id={$wpdb->prefix}users.ID WHERE 1=1 ";
+
+	//	$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_balance WHERE 1=1 ";
 
 
 $sql .=  Aistore_Balance_List::prepareWhereClouse();
@@ -312,7 +314,7 @@ $sql .=  Aistore_Balance_List::prepareWhereClouse();
 		switch ( $column_name ) {
 			case 'id':
 			case 'transaction_id':
-			case 'user_id':
+			case 'user_email':
 			case 'balance':	
 			case 'currency':
 			case 'created_by':
@@ -350,7 +352,7 @@ $sql .=  Aistore_Balance_List::prepareWhereClouse();
 			'cb'      => '<input type="checkbox" />',
 			'id' => __( 'Id', 'sp' ),
 			'transaction_id' => __( 'Transaction id', 'sp' ),
-			'user_id'    => __( 'User Id', 'sp' ),
+			'user_email'    => __( 'Email', 'sp' ),
 			'balance'    => __( 'Balance', 'sp' ),
 			'currency'    => __( 'Currency', 'sp' ),
 			'created_by' => __( 'Created By', 'sp' ),
@@ -370,7 +372,7 @@ $sql .=  Aistore_Balance_List::prepareWhereClouse();
 		$sortable_columns = array(
 			'id' => array( 'id', true ),
 			'transaction_id' => array( 'transaction_id', true ),
-			'user_id' => array( 'user_id', false ),
+			'user_email' => array( 'user_email', false ),
 			'balance' => array( 'balance', false ),
 			'currency' => array( 'currency', false ),
 		   'created_by' => array( 'created_by', false ),

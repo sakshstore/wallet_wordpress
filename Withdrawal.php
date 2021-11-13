@@ -66,21 +66,6 @@ function aistore_save_extra_user_profile_fields( $user_id ) {
   update_user_meta( $user_id, 'lock_bank_details', sanitize_text_field($_POST['lock_bank_details'] ));
 }
 
-function aistore_saksh_add_plugin_page() {
-    add_menu_page(
-        __( 'Withdrawal', 'aistore' ),
-        'Withdrawal',
-        'administrator',
-        'withdrawal',
-        'aistore_saksh_page_setting'
-    );
-}
-
-add_action( 'admin_menu', 'aistore_saksh_add_plugin_page' );
-  
-
-
-function aistore_saksh_page_setting() {
     
        ?>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -492,6 +477,6 @@ else{
 
 <?php
      
- }
+ 
 
 

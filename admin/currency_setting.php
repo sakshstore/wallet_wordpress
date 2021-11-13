@@ -1,20 +1,5 @@
 <?php
-function aistore_add_plugin_page_currency() {
-    add_menu_page(
-        __( 'Currency Setting', 'aistore' ),
-        'Currency Setting',
-        'administrator',
-        'currency',
-        'aistore_page_currency_setting'
-    );
-}
 
-add_action( 'admin_menu', 'aistore_add_plugin_page_currency' );
-
-
-//aistore_page_currency_setting
-    function aistore_page_currency_setting()
-    {
 
         if (isset($_POST['submit']) and $_POST['action'] == 'create_currency')
         {
@@ -43,7 +28,7 @@ add_action( 'admin_menu', 'aistore_add_plugin_page_currency' );
         {
 
 ?>
-<table class="form-table">
+<table class=" table form-table">
          <form method="POST" action="" name="create_currency" enctype="multipart/form-data"> 
     <?php wp_nonce_field('aistore_nonce_action', 'aistore_nonce'); ?>
     
@@ -110,11 +95,11 @@ add_action( 'admin_menu', 'aistore_add_plugin_page_currency' );
 
 ?>
   
-    <table class="form-table">
+    <table class="table  ">
      
         <tr>
       
-    <th><?php _e('Id', 'aistore'); ?></th>
+   
         <th><?php _e('Currency', 'aistore'); ?></th>
           <th><?php _e('Action', 'aistore'); ?></th>
         
@@ -128,9 +113,8 @@ add_action( 'admin_menu', 'aistore_add_plugin_page_currency' );
       
     
       <tr>
-   <td> 
 
-		   <?php echo esc_attr($row->id); ?> </td>
+
   <td> 		   <?php echo esc_attr($row->currency); ?> </td>
    <td><?php
                 if (isset($_POST['submit']) and $_POST['action'] == 'escrow_currency')
@@ -169,6 +153,8 @@ add_action( 'admin_menu', 'aistore_add_plugin_page_currency' );
         } ?>
 
     </table>
+    
+     
 	
 <?php
-    }
+    

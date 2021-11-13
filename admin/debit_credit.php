@@ -1,19 +1,5 @@
 <?php
-function aistore_add_plugin_page() {
-    add_menu_page(
-        __( 'Account', 'aistore' ),
-        'Account',
-        'administrator',
-        'account',
-        'aistore_page_setting'
-    );
-}
 
-add_action( 'admin_menu', 'aistore_add_plugin_page' );
-  
-
-
-function aistore_page_setting() {
      $wallet = new AistoreWallet();
       $pages = get_pages(); 
     
@@ -69,6 +55,8 @@ else{
     
    
 ?>
+
+
  <form method="POST" action="" name="deposit_type" enctype="multipart/form-data"> 
     <?php wp_nonce_field( 'aistore_nonce_action', 'aistore_nonce' ); ?>
     
@@ -91,64 +79,80 @@ printf(__( 'Account Balance %s.', 'aistore'),$balance);
 
 
  ?>
+  <table class="form-table">
+      	 <tr valign="top">  <th scope="row">
+  <label><?php _e( 'Users:', 'aistore' ) ;?></label></th>
+  <td>
+	<select name="user_id" >
+		 
+		 
+		  <?php
+        $blogusers = get_users();
+
+        foreach ($blogusers as $user)
+        {
+                echo '	<option  value="' . $user->ID . '">' . $user->display_name . '</option>';
+        } ?> 
  
-<br><br>
-  <label><?php _e( 'Account Type:', 'aistore' ) ;?></label>
+</select></td></tr><br><br>
+
+
+	 <tr valign="top">  <th scope="row">
+  <label><?php _e( 'Account Type:', 'aistore' ) ;?></label></th>
+  <td>
 <select name="type" id="type">
   <option value="debit"><?php _e( 'Debit', 'aistore' ) ;?></option>
   <option value="credit"><?php _e( 'Credit', 'aistore' ) ;?></option>
 
-</select><br><br>
+</select></td></tr><br><br>
 
 
 
+ <tr valign="top">  <th scope="row">
+  <label><?php _e( 'Currency:', 'aistore' ) ;?></label></th>
 
-  <label><?php _e( 'Currency:', 'aistore' ) ;?></label>
-
-
-            	
-<?php 
-
-        $plugin_data = get_plugin_data(__FILE__);
-        $plugin_name = $plugin_data['TextDomain'];
-
-        $dir = '/wp-content/plugins/wallet_wordpress-master/Common-Currency.json';
-        // print_r($plugin_data);
-        // echo $plugin_name;
-?>
-
+<td>
 <select name="currency" id="currency">
-    <?php
-        $url = get_site_url(null, $dir, 'https');
-        $currency = json_decode(file_get_contents($url));
-        $a = array();
-        foreach ($currency as $c)
-        {
-            ?>
-<option value="<?php echo $c->code; ?>"><?php echo $c->name; ?></option>
-<?php } ?>
-</select><br><br>
+    
+     <?php
+            global $wpdb;
+            $wallet = new AistoreWallet();
+        $results = $wallet->aistore_wallet_currency();
+    
+            foreach ($results as $c)
+            {
+
+                echo '	<option  value="' . $c->symbol . '">' . $c->currency . '</option>';
+
+            }
+?>
+           
+  
+</select></td><br><br>
 
 
-<input class="input" type="hidden" name="user_id" value="<?php echo esc_attr($id); ?>"/>
-  <label><?php _e( 'Amount:', 'aistore' ) ;?></label>
+ <tr valign="top">  <th scope="row">
+  <label><?php _e( 'Amount:', 'aistore' ) ;?></label></th>
 
-<input class="input" type="text" name="amount" /><br><br>
+<td><input class="input" type="text" name="amount" /></td></tr><br><br>
 
-  <label><?php _e( 'Description:', 'aistore' ) ;?></label>
+ <tr valign="top">  <th scope="row">
+  <label><?php _e( 'Description:', 'aistore' ) ;?></label></th>
   
 
+<td>
+<textarea id="description" name="description" rows="4" cols="30">
+</textarea></td></tr> <br><br>
 
-<textarea id="description" name="description" rows="4" cols="50">
-</textarea> <br><br>
-
-
-
+<tr>
+<td>
 
 <input class="input" type="submit" name="submit" value="<?php  _e( 'Submit', 'aistore' ) ?>"/>
 <input type="hidden" name="action"  value="deposit_type"/>
+</tr></td>
+ </table>
     </form>
-    
+   
 <?php
 }
 
@@ -250,4 +254,3 @@ if (isset($_REQUEST['id']))
 </div>
  <?php
      
- }

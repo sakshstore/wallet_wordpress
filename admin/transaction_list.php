@@ -1,8 +1,6 @@
 <?php
-if ( ! class_exists( 'WP_List_Table' ) ) {
-	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-}
 
+echo "SDfsd";
 class Aistore_Transaction_List extends WP_List_Table {
 
 	/** Class constructor */
@@ -219,9 +217,9 @@ public function search_box( $text, $input_id ) {
 
 		global $wpdb;
 
-		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions WHERE 1=1 ";
+		$sql = "SELECT * FROM {$wpdb->prefix}aistore_wallet_transactions  INNER JOIN {$wpdb->prefix}users ON  {$wpdb->prefix}aistore_wallet_transactions.user_id={$wpdb->prefix}users.ID WHERE 1=1 ";
 
-
+// echo $sql;
 $sql .=  Aistore_Transaction_List::prepareWhereClouse();
 
 
@@ -315,7 +313,7 @@ $sql .=  Aistore_Transaction_List::prepareWhereClouse();
 		switch ( $column_name ) {
 			
 			case 'transaction_id':
-			case 'user_id':
+			case 'user_email':
 			case 'balance':	
 			case 'currency':
 			case 'amount':
@@ -361,7 +359,7 @@ $sql .=  Aistore_Transaction_List::prepareWhereClouse();
 		$columns = [
 			'cb'      => '<input type="checkbox" />',
 			'transaction_id' => __( 'Transaction id', 'sp' ),
-			'user_id'    => __( 'User Id', 'sp' ),
+			'user_email'    => __( 'Email', 'sp' ),
 			'balance'    => __( 'Balance', 'sp' ),
 			'currency'    => __( 'Currency', 'sp' ),
 			'amount'    => __( 'Amount', 'sp' ),
@@ -383,7 +381,7 @@ $sql .=  Aistore_Transaction_List::prepareWhereClouse();
 	public function get_sortable_columns() {
 		$sortable_columns = array(
 			'transaction_id' => array( 'transaction_id', true ),
-			'user_id' => array( 'user_id', false ),
+			'user_email' => array( 'user_email', false ),
 			'balance' => array( 'balance', false ),
 			'currency' => array( 'currency', false ),
 			'amount' => array( 'amount', false ),
