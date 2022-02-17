@@ -55,7 +55,7 @@ public function status_filter( $text, $input_id ) {
   <option value="username"><?php   _e( 'User', 'aistore' ); ?></option>
  
   <option value="amount"><?php   _e( 'Amount', 'aistore' ); ?></option>
-  <option value="gateway_charge"><?php   _e( 'Gateway Charge', 'aistore' ); ?></option>
+  <!--<option value="gateway_charge"><?php   _e( 'Gateway Charge', 'aistore' ); ?></option>-->
   
     <option value="status"><?php   _e( 'Status', 'aistore' ); ?></option>
   
@@ -119,9 +119,9 @@ public function date_filter( $text, $input_id ) {
 	 <input type="hidden" name="date_filter" value="1" /> 
 		
 	  
-  <?php   _e( 'Start Date', 'aistore' ); ?>   <input type='date' class='dateFilter' name='fromDate' value='<?php if(isset($_POST['fromDate'])) echo $_POST['fromDate']; ?>'>
+  <?php   _e( 'Start Date', 'aistore' ); ?>   <input type='date' class='dateFilter' name='fromDate' value='<?php if(isset($_POST['fromDate'])) echo esc_attr($_POST['fromDate']); ?>'>
  
-    <?php   _e( 'End Date', 'aistore' ); ?>  <input type='date' class='dateFilter' name='endDate' value='<?php if(isset($_POST['endDate'])) echo $_POST['endDate']; ?>'>
+    <?php   _e( 'End Date', 'aistore' ); ?>  <input type='date' class='dateFilter' name='endDate' value='<?php if(isset($_POST['endDate'])) echo esc_attr($_POST['endDate']); ?>'>
 
   
      
@@ -154,14 +154,14 @@ public function search_box( $text, $input_id ) {
 		 
     
 <p class="search-box">
-  <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
+  <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr($text); ?>:</label>
  
  
 <select name="search_column"  >
   <option value="username"><?php   _e( 'User', 'aistore' ); ?></option>
  
   <option value="amount"><?php   _e( 'Amount', 'aistore' ); ?></option>
-  <option value="gateway_charge"><?php   _e( 'Gateway Charge', 'aistore' ); ?></option>
+  <!--<option value="gateway_charge"><?php   _e( 'Gateway Charge', 'aistore' ); ?></option>-->
   
     <option value="status"><?php   _e( 'Status', 'aistore' ); ?></option>
   
@@ -339,7 +339,7 @@ $sql .=  Aistore_Withdrawal_List::prepareWhereClouse();
 			case 'amount':
 // 			case 'gateway_charge':
 			case 'status':	
-			case 'method':	
+// 			case 'method':	
 			case 'created_at':
 				return $item[ $column_name ];
 			default:
@@ -394,7 +394,7 @@ $sql .=  Aistore_Withdrawal_List::prepareWhereClouse();
 			'amount'    => __( 'Amount', 'sp' ),
 // 			'gateway_charge' => __( 'Gateway Charge', 'sp' ),
 			'status'    => __( 'Status', 'sp' ),
-			'method'    => __( 'Method', 'sp' ),
+// 			'method'    => __( 'Method', 'sp' ),
 	
 			'created_at'    => __( 'Date', 'sp' )
 		];
@@ -414,7 +414,7 @@ $sql .=  Aistore_Withdrawal_List::prepareWhereClouse();
 			'amount' => array( 'amount', true ),
 // 			'gateway_charge' => array( 'gateway_charge', false ),
 			'status' => array( 'status', false ),
-			'method' => array( 'method', false ),
+// 			'method' => array( 'method', false ),
 
 		
 			'created_at' => array( 'created_at', false ),

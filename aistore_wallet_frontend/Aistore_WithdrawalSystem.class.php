@@ -251,7 +251,7 @@ else{
             foreach ($results as $c)
             {
 
-                echo '	<option  value="' . $c->symbol . '">' . $c->currency . '</option>';
+                echo '	<option  value="' . esc_attr($c->symbol). '">' . esc_attr($c->currency) . '</option>';
 
             }
 ?>
@@ -376,7 +376,7 @@ global $wpdb;
 
    
 		   
-		  	   <td> 		   <?php echo esc_attr($row->amount) . " " . $row->currency;?>  </td>
+		  	   <td> 		   <?php echo esc_attr($row->amount) . " " . esc_attr($row->currency);?>  </td>
 		  
 	
 		    <td> 		   <?php echo esc_attr($row->status) ; ?> </td>

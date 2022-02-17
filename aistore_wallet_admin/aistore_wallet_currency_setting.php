@@ -10,7 +10,7 @@
             }
 
             $aistore_wallet_currency = sanitize_text_field($_REQUEST['aistore_wallet_currency']);
-            echo $aistore_wallet_currency;
+            // echo $aistore_wallet_currency;
 
             global $wpdb;
 
@@ -60,7 +60,7 @@
             foreach ($currency as $c)
             {
 
-                echo '	<option  value="' . $c->code . '">' . $c->name . '</option>';
+                echo '	<option  value="' . esc_attr($c->code) . '">' . esc_attr($c->name) . '</option>';
 
             }
 

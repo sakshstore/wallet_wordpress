@@ -115,7 +115,7 @@ $currency=  $row->currency;
 
         $balance = $wallet->aistore_balance($user_id, $currency);
 
-         echo "<br>".$balance . " " . $currency;
+         echo esc_attr($balance) . " " . esc_attr($currency);
        
    endforeach;
         $wallet = new AistoreWallet();
@@ -160,18 +160,18 @@ $currency=  $row->currency;
 
 ?>    <tr>
           
-		   <td>   <?php echo $row->transaction_id; ?> </td>
-  <td> 	   <?php echo $row->type; ?> </td>
+		   <td>   <?php echo esc_attr($row->transaction_id); ?> </td>
+  <td> 	   <?php echo esc_attr($row->type); ?> </td>
     <td> 	
  
-   <?php echo $row->balance ?>
+   <?php echo esc_attr($row->balance) ?>
 		  </td>
 		   
-		  	   <td> 		   <?php echo $row->amount ?>  </td>
+		  	   <td> 		   <?php echo esc_attr($row->amount) ?>  </td>
 		  
-		    <td> 		   <?php echo $row->currency; ?> </td>
-		        <td> 		   <?php echo $row->description; ?> </td>
- <td> 		   <?php echo $row->date; ?> </td>
+		    <td> 		   <?php echo esc_attr($row->currency); ?> </td>
+		        <td> 		   <?php echo esc_attr($row->description); ?> </td>
+ <td> 		   <?php echo esc_attr($row->date); ?> </td>
             </tr>
     <?php
             endforeach;
