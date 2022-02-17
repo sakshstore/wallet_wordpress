@@ -53,7 +53,7 @@ function aistore_plugin_wallet_install()
 ) ";
 
   
-    $table_withdrawal_requests = "CREATE TABLE   IF NOT EXISTS  " . $wpdb->prefix . "widthdrawal_requests  (
+    $table_withdrawal_requests = "CREATE TABLE   IF NOT EXISTS  " . $wpdb->prefix . "aistore_wallet_widthdrawal_requests  (
   id int(100) NOT NULL  AUTO_INCREMENT,
   amount int(100) NOT NULL,
    currr  int(100)  NOT NULL,
@@ -65,7 +65,7 @@ function aistore_plugin_wallet_install()
   PRIMARY KEY (id)
 ) ";
 
-  $table_escrow_currency = "CREATE TABLE  IF NOT EXISTS  " . $wpdb->prefix . "escrow_currency  (
+  $table_escrow_currency = "CREATE TABLE  IF NOT EXISTS  " . $wpdb->prefix . "aistore_wallet_currency  (
   id int(100) NOT NULL  AUTO_INCREMENT,
   currency varchar(100) NOT NULL,
    symbol  varchar(100)   NOT NULL,
@@ -86,37 +86,34 @@ function aistore_plugin_wallet_install()
 }
 register_activation_hook(__FILE__, 'aistore_plugin_wallet_install');
 
-include_once dirname(__FILE__) . '/admin/balance_list.php';
-// include_once dirname(__FILE__) . '/admin/currency_setting.php';
-include_once dirname(__FILE__) . '/admin/transaction_list.php';
-// include_once dirname(__FILE__) . '/admin/debit_credit.php';
-include_once dirname(__FILE__) . '/admin/user_balance.php';
-include_once dirname(__FILE__) . '/AistoreWallet.class.php';
-include_once dirname(__FILE__) . '/Aistore_WithdrawalSystem.class.php';
-include_once dirname(__FILE__) . '/Widthdrawal_requests.php';
+include_once dirname(__FILE__) . '/aistore_wallet_admin/aistore_wallet_balance_list.php';
+include_once dirname(__FILE__) . '/aistore_wallet_admin/aistore_wallet_transaction_list.php';
+include_once dirname(__FILE__) . '/aistore_wallet_admin/aistore_wallet_user_balance.php';
+// include_once dirname(__FILE__) . '/aistore_wallet_admin/aistore_wallet_currency_setting.php';
+// include_once dirname(__FILE__) . '/aistore_wallet_admin/aistore_wallet_debit_credit.php';
+
+include_once dirname(__FILE__) . '/aistore_wallet_widthdraw/aistore_wallet_widthdrawal_requests.php';
+// include_once dirname(__FILE__) . '/aistore_wallet_widthdraw/aistore_wallet_withdrawal.php';
+
+
+include_once dirname(__FILE__) . '/aistore_wallet_frontend/Aistore_WithdrawalSystem.class.php';
+include_once dirname(__FILE__) . '/aistore_wallet_frontend/AistoreWallet.class.php';
+
+
+include_once dirname(__FILE__) . '/aistore_wallet_lib/aistore_wallet_menu.php';
+
+
+include_once dirname(__FILE__) . '/aistore_wallet_wp_hooks/aistore_wallet_shortcodes.php';
+
+
+// include_once dirname(__FILE__) . '/AistoreWallet.class.php';
+// include_once dirname(__FILE__) . '/Aistore_WithdrawalSystem.class.php';
+// include_once dirname(__FILE__) . '/Widthdrawal_requests.php';
 // include_once dirname(__FILE__) . '/Withdrawal.php';
 
 // include_once dirname(__FILE__) . '/AistoreAccount.class.php';
-include_once dirname(__FILE__) . '/menu.php';
+// include_once dirname(__FILE__) . '/menu.php';
 
 
 
 //include_once dirname(__FILE__) . '/Aistore_SakshWithdrawalSystem.class.php';
-
-add_shortcode('aistore_transaction_history', array(
-    'AistoreWallet',
-    'aistore_transaction_history'
-));
-
- add_shortcode('aistore_saksh_withdrawal_system', array(
-    'Aistore_WithdrawalSystem',
-    'aistore_saksh_withdrawal_system'
-));
- 
- 
-  add_shortcode('aistore_bank_account', array(
-    'Aistore_WithdrawalSystem',
-    'aistore_bank_account'
-));
-
-
